@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const trafficUpdateSchema = new mongoose.Schema({
   road: { type: mongoose.Schema.Types.ObjectId, ref: 'Road' },
@@ -6,4 +6,5 @@ const trafficUpdateSchema = new mongoose.Schema({
   traffic_condition: { type: String, enum: ['clear', 'moderate', 'heavy'] },
 });
 
-module.exports = mongoose.model('TrafficUpdate', trafficUpdateSchema);
+const TrafficUpdate = mongoose.model('TrafficUpdate', trafficUpdateSchema);
+export default TrafficUpdate;

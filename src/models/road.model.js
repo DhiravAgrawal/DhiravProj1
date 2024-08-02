@@ -1,6 +1,5 @@
 
-// models/Road.js
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const roadSchema = new mongoose.Schema({
   start_location: { type: mongoose.Schema.Types.ObjectId, ref: 'Location' },
@@ -9,5 +8,7 @@ const roadSchema = new mongoose.Schema({
   traffic_condition: { type: String, enum: ['clear', 'moderate', 'heavy'], default: 'clear' },
 });
 
-module.exports = mongoose.model('Road', roadSchema);
+const Road = mongoose.model('Road', roadSchema);
+
+export default Road;
 

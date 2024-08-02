@@ -1,9 +1,9 @@
 
-import  Location from '../models/location.model.js';
+import Location from '../models/location.model.js';
 import Road  from'../models/road.model.js';
 import TrafficUpdate from '../models/trafficUpdate.model.js';
 
-addLocation = async (req, res) => {
+const addLocation = async (req, res) => {
   try {
     const location = new Location(req.body);
     await location.save();
@@ -13,7 +13,7 @@ addLocation = async (req, res) => {
   }
 };
 
-addRoad = async (req, res) => {
+const addRoad = async (req, res) => {
   try {
     const road = new Road(req.body);
     await road.save();
@@ -23,7 +23,7 @@ addRoad = async (req, res) => {
   }
 };
 
-updateTrafficCondition = async (req, res) => {
+const updateTrafficCondition = async (req, res) => {
   try {
     const { road_id, timestamp, traffic_condition } = req.body;
     const trafficUpdate = new TrafficUpdate({
@@ -43,10 +43,10 @@ updateTrafficCondition = async (req, res) => {
 
 
 const dijkstra = (locations, roads, startId, endId) => {
-  //Dijkstra's algorithm
+
 };
 
-getShortestPath = async (req, res) => {
+const getShortestPath = async (req, res) => {
   try {
     const { start_location_id, end_location_id } = req.query;
     const locations = await Location.find();
@@ -58,7 +58,7 @@ getShortestPath = async (req, res) => {
   }
 };
 
-getTrafficCondition = async (req, res) => {
+const getTrafficCondition = async (req, res) => {
   try {
     const road = await Road.findById(req.params.id);
     res.status(200).json(road.traffic_condition);
@@ -67,7 +67,7 @@ getTrafficCondition = async (req, res) => {
   }
 };
 
-generateTrafficReport = async (req, res) => {
+const generateTrafficReport = async (req, res) => {
   try {
     const roads = await Road.find().populate('start_location end_location');
     const csv = csvWriter.createObjectCsvStringifier({

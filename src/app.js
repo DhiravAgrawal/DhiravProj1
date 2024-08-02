@@ -1,7 +1,7 @@
 import 'dotenv/config'
 import checkRoutes from "./routes/check.routes.js"
 import  express from "express";
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const app = express();
 
 // import path from "path";
