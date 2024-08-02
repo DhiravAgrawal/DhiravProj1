@@ -1,18 +1,7 @@
-// const location = (req,res)=>{
-//     // const roadData = {req.body.road};
-//     console.log("reached");
-//     res.render("pages/addLocation.ejs");
-// }
-// const road = async (req,res)=>{
-//     res.render("pages/addRoad.ejs");
-// }
-// const trafficUpdates = (req,res)=>{
-//     res.render("pages/addTrafficCondition.ejs");
-// }
 
-
-// controllers/locationController.js
-const Location = require('../models/location.model.js');
+import  Location from '../models/location.model.js';
+import Road  from'../models/road.model.js';
+import TrafficUpdate from '../models/trafficUpdate.model.js';
 
 addLocation = async (req, res) => {
   try {
@@ -24,10 +13,6 @@ addLocation = async (req, res) => {
   }
 };
 
-// controllers/roadController.js
-const Road = require('../models/road.model.js');
-const TrafficUpdate = require('../models/trafficUpdate.model.js');
-
 addRoad = async (req, res) => {
   try {
     const road = new Road(req.body);
@@ -38,7 +23,7 @@ addRoad = async (req, res) => {
   }
 };
 
-exports.updateTrafficCondition = async (req, res) => {
+updateTrafficCondition = async (req, res) => {
   try {
     const { road_id, timestamp, traffic_condition } = req.body;
     const trafficUpdate = new TrafficUpdate({
@@ -56,16 +41,12 @@ exports.updateTrafficCondition = async (req, res) => {
   }
 };
 
-// controllers/pathController.js
-const Location = require('../models/location.model.js');
-const Road = require('../models/road.model.js');
 
 const dijkstra = (locations, roads, startId, endId) => {
-  // Implement Dijkstra's algorithm
-  // Calculate the shortest path considering the traffic conditions
+  //Dijkstra's algorithm
 };
 
-exports.getShortestPath = async (req, res) => {
+getShortestPath = async (req, res) => {
   try {
     const { start_location_id, end_location_id } = req.query;
     const locations = await Location.find();
@@ -77,12 +58,7 @@ exports.getShortestPath = async (req, res) => {
   }
 };
 
-// controllers/reportController.js
-const Road = require('../models/Road');
-const TrafficUpdate = require('../models/TrafficUpdate');
-const csvWriter = require('csv-writer');
-
-exports.getTrafficCondition = async (req, res) => {
+getTrafficCondition = async (req, res) => {
   try {
     const road = await Road.findById(req.params.id);
     res.status(200).json(road.traffic_condition);
@@ -91,7 +67,7 @@ exports.getTrafficCondition = async (req, res) => {
   }
 };
 
-exports.generateTrafficReport = async (req, res) => {
+generateTrafficReport = async (req, res) => {
   try {
     const roads = await Road.find().populate('start_location end_location');
     const csv = csvWriter.createObjectCsvStringifier({
@@ -118,4 +94,4 @@ exports.generateTrafficReport = async (req, res) => {
 };
 
 
-export { road, location, trafficUpdates};
+export { addLocation, addRoad, getTrafficCondition, generateTrafficReport, getShortestPath, updateTrafficCondition};

@@ -1,10 +1,12 @@
 import { Router } from "express";
-import {road, location, trafficUpdates} from "../controllers/check.controller.js";
-const router = Router();
+import express from 'express';
+import { addLocation, addRoad, getTrafficCondition, generateTrafficReport, getShortestPath, updateTrafficCondition} from "../controllers/check.controller"
 
-router.route("/locations").post(location);
-router.route("/roads").post(road);
-router.route("/traffic-updates").post(trafficUpdates);
-// router.route("/register").post(register)
+const router = express.Router();
+router.post('/locations', addLocation);
+router.post('/roads', addRoad);
+router.post('/traffic-updates', updateTrafficCondition);
+router.get('/roads/:id/traffic-condition', getTrafficCondition);
+router.get('/report/traffic', generateTrafficReport);
 
-export default router;
+export {router};

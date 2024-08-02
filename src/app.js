@@ -1,6 +1,7 @@
 import 'dotenv/config'
 import checkRoutes from "./routes/check.routes.js"
 import  express from "express";
+const mongoose = require('mongoose');
 const app = express();
 
 // import path from "path";
@@ -37,6 +38,12 @@ app.use(express.json({ limit: "40kb" }));
 app.use(express.urlencoded({ limit: "40kb", extended: true }));
 app.use(bodyParser.json());
 
+
+
+
+import routes from './routes/check.routes.js';
+
+app.use(routes);
 
 app.use("/home", homeRoute);
 
