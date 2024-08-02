@@ -1,0 +1,30 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<br>
+<h2>Enter Road</h2>
+
+<div class="row mt-3">
+<div class="col-8 offset-2">
+    <form action="/listings/<%= listing.id %>?_method=PUT" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
+        <div class="mb-3 col">
+            <label for="title" class="form-label" >Location 1 Id</label>
+            <input type="text" name="listing[title]" value = "<%= listing.title %>" class="form-control" required>
+            <div class="valid-feedback">Ttile looks good</div>
+        </div>
+        <div class="mb-3 col">
+            <label for="description" class="form-label" >Location 2 Id</label>
+            <input type="text" name="listing[description]" value = "<%= listing.description %>" class="form-control" required>
+            <div class="invalid-feedback">Please enter short description</div>
+        </div>
+        <div class="mb-3 ">
+            <label for="location" class="form-label" >Distance</label>       
+            <input type="text" name="listing[location]" value = "<%= listing.location %>" class="form-control" required>
+            <div class="invalid-feedback">Please enter Location</div>
+        </div>
+        <div class="mb-3 ">
+            <label for="location" class="form-label" >Traffic Condition</label>       
+            <input type="text" name="listing[location]" value = "<%= listing.location %>" class="form-control" required>
+            <div class="invalid-feedback">Please enter Location</div>
+        <button class="btn btn-dark edit-btn mt-3">Submit</button> 
+        <!-- <br><br> -->
+        </div>
+</div>
